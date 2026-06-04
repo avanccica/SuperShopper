@@ -508,134 +508,134 @@
 
         // The Ultimate Edibles Database
         const productDB = [
-            // Produce
-            { emoji: '🍎', name: 'Apple', price: 2.00, cost: 1.00, category: 'Produce' },
-            { emoji: '🥑', name: 'Avocado', price: 6.00, cost: 2.50, category: 'Produce' },
-            { emoji: '🍌', name: 'Banana', price: 1.50, cost: 0.50, category: 'Produce' },
-            { emoji: '🫐', name: 'Blueberry', price: 10.00, cost: 3.00, category: 'Produce' },
-            { emoji: '🥦', name: 'Broccoli', price: 2.00, cost: 1.00, category: 'Produce' },
-            { emoji: '🥕', name: 'Carrot', price: 1.00, cost: 0.50, category: 'Produce' },
-            { emoji: '🍒', name: 'Cherry', price: 6.00, cost: 2.50, category: 'Produce' },
-            { emoji: '🥥', name: 'Coconut', price: 4.00, cost: 2.00, category: 'Produce' },
-            { emoji: '🌽', name: 'Corn', price: 3.00, cost: 1.00, category: 'Produce' },
-            { emoji: '🌿', name: 'Fresh Herbs', price: 2.50, cost: 1.00, category: 'Produce' },
-            { emoji: '🧄', name: 'Garlic', price: 3.00, cost: 1.00, category: 'Produce' },
-            { emoji: '🫚', name: 'Ginger', price: 4.00, cost: 1.50, category: 'Produce' },
-            { emoji: '🍏', name: 'Green Apple', price: 2.00, cost: 1.00, category: 'Produce' },
-            { emoji: '🍇', name: 'Grapes', price: 3.00, cost: 1.50, category: 'Produce' },
-            { emoji: '🥝', name: 'Kiwi', price: 4.00, cost: 1.50, category: 'Produce' },
-            { emoji: '🍋', name: 'Lemon', price: 1.50, cost: 0.50, category: 'Produce' },
-            { emoji: '🥭', name: 'Mango', price: 4.00, cost: 1.50, category: 'Produce' },
-            { emoji: '🍈', name: 'Melon', price: 4.00, cost: 1.50, category: 'Produce' },
-            { emoji: '🍄', name: 'Mushroom', price: 5.00, cost: 2.00, category: 'Produce' },
-            { emoji: '🍄‍🟫', name: 'Brown Mushroom', price: 6.00, cost: 2.50, category: 'Produce' },
-            { emoji: '🌵', name: 'Nopales', price: 4.00, cost: 2.00, category: 'Produce' },
-            { emoji: '🫒', name: 'Olive', price: 9.00, cost: 4.00, category: 'Produce' },
-            { emoji: '🧅', name: 'Onion', price: 2.00, cost: 0.75, category: 'Produce' },
-            { emoji: '🍊', name: 'Orange', price: 2.00, cost: 0.75, category: 'Produce' },
-            { emoji: '🍑', name: 'Peach', price: 3.50, cost: 1.50, category: 'Produce' },
-            { emoji: '🍐', name: 'Pear', price: 3.00, cost: 1.00, category: 'Produce' },
-            { emoji: '🫛', name: 'Peas', price: 3.00, cost: 1.00, category: 'Produce' },
-            { emoji: '🍍', name: 'Pineapple', price: 6.00, cost: 2.00, category: 'Produce' },
-            { emoji: '🥔', name: 'Potato', price: 1.50, cost: 0.50, category: 'Produce' },
-            { emoji: '🎃', name: 'Pumpkin', price: 5.00, cost: 2.00, category: 'Produce' },
-            { emoji: '🥗', name: 'Salad', price: 6.00, cost: 3.00, category: 'Produce' },
-            { emoji: '🍓', name: 'Strawberry', price: 4.00, cost: 2.00, category: 'Produce' },
-            { emoji: '🎋', name: 'Sugarcane', price: 2.00, cost: 0.50, category: 'Produce' },
-            { emoji: '🍠', name: 'Sweet Potato', price: 2.50, cost: 0.75, category: 'Produce' },
-            { emoji: '🍅', name: 'Tomato', price: 2.00, cost: 0.75, category: 'Produce' },
-            { emoji: '🍉', name: 'Watermelon', price: 5.00, cost: 2.50, category: 'Produce' },
-
-            // Bakery & Dairy
-            { emoji: '🥯', name: 'Bagel', price: 4.00, cost: 1.50, category: 'Bakery & Dairy' },
-            { emoji: '🥖', name: 'Baguette', price: 3.00, cost: 1.50, category: 'Bakery & Dairy' },
-            { emoji: '🍞', name: 'Bread', price: 3.50, cost: 1.50, category: 'Bakery & Dairy' },
-            { emoji: '🧈', name: 'Butter', price: 2.50, cost: 1.25, category: 'Bakery & Dairy' },
-            { emoji: '🍰', name: 'Cake Slice', price: 5.00, cost: 2.00, category: 'Bakery & Dairy' },
-            { emoji: '🧀', name: 'Cheese', price: 8.00, cost: 3.50, category: 'Bakery & Dairy' },
-            { emoji: '🥐', name: 'Croissant', price: 4.00, cost: 2.00, category: 'Bakery & Dairy' },
-            { emoji: '🧁', name: 'Cupcake', price: 4.00, cost: 1.50, category: 'Bakery & Dairy' },
-            { emoji: '🥚', name: 'Eggs', price: 3.00, cost: 1.50, category: 'Bakery & Dairy' },
-            { emoji: '🫓', name: 'Flatbread', price: 3.50, cost: 1.25, category: 'Bakery & Dairy' },
-            { emoji: '🥞', name: 'Pancakes', price: 5.00, cost: 2.50, category: 'Bakery & Dairy' },
-            { emoji: '🥨', name: 'Pretzel', price: 4.50, cost: 1.25, category: 'Bakery & Dairy' },
-    
-            // Hot Meals & Seafood
-            { emoji: '🥓', name: 'Bacon', price: 10.00, cost: 4.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍔', name: 'Burger', price: 8.00, cost: 4.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🥫', name: 'Canned Food', price: 3.00, cost: 1.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍗', name: 'Chicken', price: 7.00, cost: 3.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🦀', name: 'Crab', price: 18.00, cost: 8.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍛', name: 'Curry Rice', price: 8.00, cost: 3.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🥟', name: 'Dumplings', price: 7.00, cost: 3.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🥠', name: 'Fortune Cookie', price: 3.00, cost: 1.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍟', name: 'Fries', price: 4.00, cost: 1.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🌭', name: 'Hot Dog', price: 6.00, cost: 2.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🦞', name: 'Lobster', price: 25.00, cost: 12.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🦪', name: 'Oyster', price: 15.00, cost: 6.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🥘', name: 'Paella', price: 12.00, cost: 5.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍝', name: 'Pasta', price: 9.00, cost: 4.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍕', name: 'Pizza', price: 10.00, cost: 5.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🐟', name: 'Pomfret', price: 8.00, cost: 4.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🦐', name: 'Prawn', price: 11.00, cost: 4.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🍚', name: 'Rice Bowl', price: 4.00, cost: 1.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🍙', name: 'Rice Ball', price: 3.50, cost: 1.25, category: 'Hot Meals & Seafood' },
-            { emoji: '🍘', name: 'Rice Cracker', price: 2.50, cost: 1.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍜', name: 'Ramen', price: 8.00, cost: 3.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🥪', name: 'Sandwich', price: 6.00, cost: 2.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🐛', name: 'Sea Cucumber', price: 16.00, cost: 7.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍢', name: 'Skewers', price: 7.00, cost: 3.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍤', name: 'Shrimp', price: 12.00, cost: 5.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🦑', name: 'Squid', price: 10.00, cost: 4.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🥩', name: 'Steak', price: 12.00, cost: 6.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🍲', name: 'Stew', price: 8.00, cost: 3.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🍣', name: 'Sushi', price: 14.00, cost: 7.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🌮', name: 'Taco', price: 6.00, cost: 2.50, category: 'Hot Meals & Seafood' },
-            { emoji: '🐠', name: 'Tiger Fish', price: 12.00, cost: 6.00, category: 'Hot Meals & Seafood' },
-            { emoji: '🌯', name: 'Burrito', price: 7.00, cost: 3.00, category: 'Hot Meals & Seafood' },
-
-            // Sweets & Snacks
-            { emoji: '🍦', name: 'Butterscotch Ice Cream', price: 4.50, cost: 2.00, category: 'Sweets & Snacks' },
-            { emoji: '🍬', name: 'Candy', price: 1.00, cost: 0.25, category: 'Sweets & Snacks' },
-            { emoji: '🍫', name: 'Chocolate', price: 3.00, cost: 1.50, category: 'Sweets & Snacks' },
-            { emoji: '🍪', name: 'Cookie', price: 2.50, cost: 1.00, category: 'Sweets & Snacks' },
-            { emoji: '🍮', name: 'Custard', price: 4.00, cost: 1.50, category: 'Sweets & Snacks' },
-            { emoji: '🍡', name: 'Dango', price: 4.00, cost: 1.50, category: 'Sweets & Snacks' },
-            { emoji: '🍩', name: 'Donut', price: 3.00, cost: 1.00, category: 'Sweets & Snacks' },
-            { emoji: '🍯', name: 'Honey', price: 5.00, cost: 2.50, category: 'Sweets & Snacks' },
-            { emoji: '🍦', name: 'Ice Cream', price: 4.50, cost: 2.00, category: 'Sweets & Snacks' },
-            { emoji: '🍨', name: 'Ice Cream Bowl', price: 5.00, cost: 2.00, category: 'Sweets & Snacks' },
-            { emoji: '🍭', name: 'Lollipop', price: 1.50, cost: 0.50, category: 'Sweets & Snacks' },
-            { emoji: '🥮', name: 'Mooncake', price: 6.00, cost: 2.50, category: 'Sweets & Snacks' },
-            { emoji: '🍨', name: 'Neapolitan Ice Cream', price: 5.00, cost: 2.00, category: 'Sweets & Snacks' },
-            { emoji: '🥜', name: 'Peanuts', price: 3.00, cost: 1.00, category: 'Sweets & Snacks' },
-            { emoji: '🍿', name: 'Popcorn', price: 3.00, cost: 1.00, category: 'Sweets & Snacks' },
-            { emoji: '🧇', name: 'Waffle', price: 5.00, cost: 2.00, category: 'Sweets & Snacks' },
-            { emoji: '🎂', name: 'Birthday Cake', price: 8.00, cost: 3.00, category: 'Sweets & Snacks' },
-            { emoji: '🍧', name: 'Shaved Ice', price: 4.00, cost: 1.50, category: 'Sweets & Snacks' },
-
-            // Beverages
-            { emoji: '☕', name: 'Coffee', price: 5.00, cost: 1.50, category: 'Beverages' },
-            { emoji: '🥥', name: 'Coconut Water', price: 3.50, cost: 1.25, category: 'Beverages' },
-            { emoji: '🧃', name: 'Juice Box', price: 2.50, cost: 0.75, category: 'Beverages' },
-            { emoji: '🍋', name: 'Lemonade', price: 3.00, cost: 1.00, category: 'Beverages' },
-            { emoji: '🥛', name: 'Milk Glass', price: 4.00, cost: 2.00, category: 'Beverages' },
-            { emoji: '🥤', name: 'Soda', price: 2.50, cost: 1.00, category: 'Beverages' },
-            { emoji: '🍵', name: 'Tea', price: 3.00, cost: 1.00, category: 'Beverages' },
-            { emoji: '💧', name: 'Water', price: 1.50, cost: 0.50, category: 'Beverages' },
-            { emoji: '🧋', name: 'Bubble Tea', price: 5.00, cost: 2.00, category: 'Beverages' },
-            
-            // Restricted Items (Age 18+)
-            { emoji: '🍺', name: 'Beer', price: 5.00, cost: 2.50, category: 'Restricted (18+)' },
-            { emoji: '🍻', name: 'Beer Pitcher', price: 12.00, cost: 5.00, category: 'Restricted (18+)' },
-            { emoji: '🍾', name: 'Champagne', price: 25.00, cost: 12.00, category: 'Restricted (18+)' },
-            { emoji: '🚬', name: 'Cigarettes', price: 8.00, cost: 4.00, category: 'Restricted (18+)' },
-            { emoji: '🍹', name: 'Cocktail', price: 10.00, cost: 5.00, category: 'Restricted (18+)' },
-            { emoji: '🍸', name: 'Martini', price: 12.00, cost: 6.00, category: 'Restricted (18+)' },
-            { emoji: '🍶', name: 'Sake', price: 9.00, cost: 4.50, category: 'Restricted (18+)' },
-            { emoji: '🥃', name: 'Whiskey', price: 18.00, cost: 9.00, category: 'Restricted (18+)' },
-            { emoji: '🍷', name: 'Wine', price: 15.00, cost: 7.00, category: 'Restricted (18+)' },
-        ];
+            // Produce					
+{ emoji: '🍎', name: 'Apple', price: 5, cost: 1.8 category: 'Produce' },					
+{ emoji: '🥑', name: 'Avocado', price: 8.5, cost: 2.98, category: 'Produce' },					
+{ emoji: '🍌', name: 'Banana', price: 8, cost: 2.8, category: 'Produce' },					
+{ emoji: '🫐', name: 'Blueberry', price: 8, cost: 2.8, category: 'Produce' },					
+{ emoji: '🥦', name: 'Broccoli', price: 8, cost: 2.8, category: 'Produce' },					
+{ emoji: '🥕', name: 'Carrot', price: 4.5, cost: 1.58, category: 'Produce' },					
+{ emoji: '🍒', name: 'Cherry', price: 8, cost: 2.8, category: 'Produce' },					
+{ emoji: '🥥', name: 'Coconut', price: 8.5, cost: 2.98, category: 'Produce' },					
+{ emoji: '🌽', name: 'Corn', price: 8.5, cost: 2.98 category: 'Produce' },					
+{ emoji: '🌿', name: 'Fresh Herbs', price: 12, cost: 4.2, category: 'Produce' },					
+{ emoji: '🧄', name: 'Garlic', price: 4.5, cost: 1.58 category: 'Produce' },					
+{ emoji: '🫚', name: 'Ginger', price: 4.5, cost: 1.58 category: 'Produce' },					
+{ emoji: '🍏', name: 'Green Apple', price: 5, cost: 1.75, category: 'Produce' },					
+{ emoji: '🍇', name: 'Grapes', price: 8, cost: 2.8, category: 'Produce' },					
+{ emoji: '🥝', name: 'Kiwi', price: 8.5, cost: 2.98 category: 'Produce' },					
+{ emoji: '🍋', name: 'Lemon', price: 5.5, cost: 1.93 category: 'Produce' },					
+{ emoji: '🥭', name: 'Mango', price: 8.5, cost: 2.98 category: 'Produce' },					
+{ emoji: '🍈', name: 'Melon', price: 10, cost: 3.5, category: 'Produce' },					
+{ emoji: '🍄', name: 'Mushroom', price: 10, cost: 3.5, category: 'Produce' },					
+{ emoji: '🍄‍🟫', name: 'Brown Mushroom', price: 10, cost: 3.5, category: 'Produce' },					
+{ emoji: '🌵', name: 'Nopales', price: 15, cost: 5.25, category: 'Produce' },					
+{ emoji: '🫒', name: 'Olive', price: 5, cost: 1.75, category: 'Produce' },					
+{ emoji: '🧅', name: 'Onion', price: 4.5, cost: 1.58 category: 'Produce' },					
+{ emoji: '🍊', name: 'Orange', price: 5.5, cost: 1.93 category: 'Produce' },					
+{ emoji: '🍑', name: 'Peach', price: 8, cost: 2.8, category: 'Produce' },					
+{ emoji: '🍐', name: 'Pear', price: 8, cost: 2.8, category: 'Produce' },					
+{ emoji: '🫛', name: 'Peas', price: 8.5, cost: 2.98 category: 'Produce' },					
+{ emoji: '🍍', name: 'Pineapple', price: 10, cost: 3.5, category: 'Produce' },					
+{ emoji: '🥔', name: 'Potato', price: 4.5, cost: 1.58 category: 'Produce' },					
+{ emoji: '🎃', name: 'Pumpkin', price: 7, cost: 2.45, category: 'Produce' },					
+{ emoji: '🥗', name: 'Salad', price: 12, cost: 4.2, category: 'Produce' },					
+{ emoji: '🍓', name: 'Strawberry', price: 13, cost: 4.55, category: 'Produce' },					
+{ emoji: '🎋', name: 'Sugarcane', price: 8.5, cost: 2.98 category: 'Produce' },					
+{ emoji: '🍠', name: 'Sweet Potato', price: 4.5, cost: 1.58 category: 'Produce' },					
+{ emoji: '🍅', name: 'Tomato', price: 8, cost: 2.8, category: 'Produce' },					
+{ emoji: '🍉', name: 'Watermelon', price: 7, cost: 2.45, category: 'Produce' },					
+					
+// Bakery & Dairy					
+{ emoji: '🥯', name: 'Bagel', price: 27, cost: 9.45, category: 'Bakery & Dairy' },					
+{ emoji: '🥖', name: 'Baguette', price: 29, cost: 10.15, category: 'Bakery & Dairy' },					
+{ emoji: '🍞', name: 'Bread', price: 24, cost: 8.4, category: 'Bakery & Dairy' },					
+{ emoji: '🧈', name: 'Butter', price: 15.5, cost: 5.43 category: 'Bakery & Dairy' },					
+{ emoji: '🍰', name: 'Cake Slice', price: 27, cost: 9.45, category: 'Bakery & Dairy' },					
+{ emoji: '🧀', name: 'Cheese', price: 24, cost: 8.4, category: 'Bakery & Dairy' },					
+{ emoji: '🥐', name: 'Croissant', price: 29, cost: 10.15, category: 'Bakery & Dairy' },					
+{ emoji: '🧁', name: 'Cupcake', price: 27, cost: 9.45, category: 'Bakery & Dairy' },					
+{ emoji: '🥚', name: 'Eggs', price: 15.5, cost: 5.43 category: 'Bakery & Dairy' },					
+{ emoji: '🫓', name: 'Flatbread', price: 24, cost: 8.4, category: 'Bakery & Dairy' },					
+{ emoji: '🥞', name: 'Pancakes', price: 32, cost: 11.2, category: 'Bakery & Dairy' },					
+{ emoji: '🥨', name: 'Pretzel', price: 27, cost: 9.45, category: 'Bakery & Dairy' },					
+					
+// Hot Meals & Seafood					
+{ emoji: '🥓', name: 'Bacon', price: 15.5, cost: 5.43 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍔', name: 'Burger', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🥫', name: 'Canned Food', price: 15.5, cost: 5.43 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍗', name: 'Chicken', price: 18.5, cost: 6.48 category: 'Hot Meals & Seafood' },					
+{ emoji: '🦀', name: 'Crab', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍛', name: 'Curry Rice', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🥟', name: 'Dumplings', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🥠', name: 'Fortune Cookie', price: 15.5, cost: 5.43 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍟', name: 'Fries', price: 26.5, cost: 9.28 category: 'Hot Meals & Seafood' },					
+{ emoji: '🌭', name: 'Hot Dog', price: 26.5, cost: 9.28 category: 'Hot Meals & Seafood' },					
+{ emoji: '🦞', name: 'Lobster', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🦪', name: 'Oyster', price: 21.5, cost: 7.53 category: 'Hot Meals & Seafood' },					
+{ emoji: '🥘', name: 'Paella', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🍝', name: 'Pasta', price: 26.5, cost: 9.28 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍕', name: 'Pizza', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🐟', name: 'Pomfret', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🦐', name: 'Prawn', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍚', name: 'Rice Bowl', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍙', name: 'Rice Ball', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍘', name: 'Rice Cracker', price: 15.5, cost: 5.43 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍜', name: 'Ramen', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🥪', name: 'Sandwich', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🐛', name: 'Sea Cucumber', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍢', name: 'Skewers', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🍤', name: 'Shrimp', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🦑', name: 'Squid', price: 26.5, cost: 9.28 category: 'Hot Meals & Seafood' },					
+{ emoji: '🥩', name: 'Steak', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🍲', name: 'Stew', price: 27, cost: 9.45, category: 'Hot Meals & Seafood' },					
+{ emoji: '🍣', name: 'Sushi', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🌮', name: 'Taco', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+{ emoji: '🐠', name: 'Tiger Fish', price: 23.5, cost: 8.23 category: 'Hot Meals & Seafood' },					
+{ emoji: '🌯', name: 'Burrito', price: 32, cost: 11.2, category: 'Hot Meals & Seafood' },					
+					
+// Sweets & Snacks					
+{ emoji: '🍦', name: 'Butterscotch Ice Cream', price: 24, cost: 8.4, category: 'Sweets & Snacks' },					
+{ emoji: '🍬', name: 'Candy', price: 15.5, cost: 5.43 category: 'Sweets & Snacks' },					
+{ emoji: '🍫', name: 'Chocolate', price: 15.5, cost: 5.43 category: 'Sweets & Snacks' },					
+{ emoji: '🍪', name: 'Cookie', price: 24, cost: 8.4, category: 'Sweets & Snacks' },					
+{ emoji: '🍮', name: 'Custard', price: 27, cost: 9.45, category: 'Sweets & Snacks' },					
+{ emoji: '🍡', name: 'Dango', price: 23.5, cost: 8.23 category: 'Sweets & Snacks' },					
+{ emoji: '🍩', name: 'Donut', price: 27, cost: 9.45, category: 'Sweets & Snacks' },					
+{ emoji: '🍯', name: 'Honey', price: 13.5, cost: 4.73 category: 'Sweets & Snacks' },					
+{ emoji: '🍦', name: 'Ice Cream', price: 24, cost: 8.4, category: 'Sweets & Snacks' },					
+{ emoji: '🍨', name: 'Ice Cream Bowl', price: 21.5, cost: 7.53 category: 'Sweets & Snacks' },					
+{ emoji: '🍭', name: 'Lollipop', price: 15.5, cost: 5.43 category: 'Sweets & Snacks' },					
+{ emoji: '🥮', name: 'Mooncake', price: 24, cost: 8.4, category: 'Sweets & Snacks' },					
+{ emoji: '🍨', name: 'Neapolitan Ice Cream', price: 24, cost: 8.4, category: 'Sweets & Snacks' },					
+{ emoji: '🥜', name: 'Peanuts', price: 15.5, cost: 5.43 category: 'Sweets & Snacks' },					
+{ emoji: '🍿', name: 'Popcorn', price: 15.5, cost: 5.43 category: 'Sweets & Snacks' },					
+{ emoji: '🧇', name: 'Waffle', price: 32, cost: 11.2, category: 'Sweets & Snacks' },					
+{ emoji: '🎂', name: 'Birthday Cake', price: 27, cost: 9.45, category: 'Sweets & Snacks' },					
+{ emoji: '🍧', name: 'Shaved Ice', price: 23.5, cost: 8.23 category: 'Sweets & Snacks' },					
+					
+// Beverages					
+{ emoji: '☕', name: 'Coffee', price: 23.5, cost: 8.23 category: 'Beverages' },					
+{ emoji: '🥥', name: 'Coconut Water', price: 23.5, cost: 8.23 category: 'Beverages' },					
+{ emoji: '🧃', name: 'Juice Box', price: 11, cost: 3.85, category: 'Beverages' },					
+{ emoji: '🍋', name: 'Lemonade', price: 27, cost: 9.45, category: 'Beverages' },					
+{ emoji: '🥛', name: 'Milk Glass', price: 14, cost: 4.9, category: 'Beverages' },					
+{ emoji: '🥤', name: 'Soda', price: 13.5, cost: 4.73 category: 'Beverages' },					
+{ emoji: '🍵', name: 'Tea', price: 23.5, cost: 8.23 category: 'Beverages' },					
+{ emoji: '💧', name: 'Water', price: 11, cost: 3.85, category: 'Beverages' },					
+{ emoji: '🧋', name: 'Bubble Tea', price: 32, cost: 11.2, category: 'Beverages' },					
+					
+// Eighteen					
+{ emoji: '🍺', name: 'Beer', price: 5.00, cost: 1.75, category: 'Eighteen' },					
+{ emoji: '🍻', name: 'Beer Family Pack', price: 10.00, cost: 3.5, category: 'Eighteen' },					
+{ emoji: '🍾', name: 'Champagne', price: 25.00, cost: 8.75, category: 'Eighteen' },					
+{ emoji: '🚬', name: 'Cigarettes', price: 10.00, cost: 3.5, category: 'Eighteen' },					
+{ emoji: '🍹', name: 'Cocktail', price: 30.00, cost: 10.5, category: 'Eighteen' },					
+{ emoji: '🍸', name: 'Martini', price: 40.00, cost: 14.00, category: 'Eighteen' },					
+{ emoji: '🍶', name: 'Sake', price: 100.00, cost: 35.00, category: 'Eighteen' },					
+{ emoji: '🥃', name: 'Whiskey', price: 25.00, cost: 8.75, category: 'Eighteen' },					
+{ emoji: '🍷', name: 'Wine', price: 250.00, cost: 87.5, category: 'Eighteen' },					
+];					
 
         function init() {
             renderCatalog();
@@ -830,7 +830,7 @@
 
         function createContractPackage(type) {
             const isCare = type === 'care';
-            const pool = productDB.filter(item => isCare ? item.category !== 'Restricted (18+)' : true);
+            const pool = productDB.filter(item => isCare ? item.category !== 'Eighteen' : true);
             const itemCount = isCare ? 3 : 5;
             const chosen = [];
             const used = new Set();
@@ -1175,7 +1175,7 @@
             let html = '';
             
             categories.forEach(cat => {
-                let color = cat === 'Restricted (18+)' ? '#ff9aa2' : '#ffdac1';
+                let color = cat === 'Eighteen' ? '#ff9aa2' : '#ffdac1';
                 html += `<h2 class="catalog-category-title" style="border-color:${color}">${cat}</h2>`;
                 productDB.forEach((p, i) => {
                     if (p.category === cat) {
@@ -1308,7 +1308,7 @@
         // --- INVENTORY SALE TOGGLE ---
         function renderShelves() {
             const generateCardHTML = (item, i) => {
-                let isRestricted = item.category === 'Restricted (18+)';
+                let isRestricted = item.category === 'Eighteen';
                 let borderStyle = isRestricted ? 'border-color: #ff9aa2;' : '';
                 let isForSale = item.forSale !== false;
                 return `
@@ -1487,7 +1487,7 @@
             
             if (currentCustomerType === 'robber') {
                 // Select a random restricted item for the robber to demand
-                let restrictedItems = productDB.filter(p => p.category === 'Restricted (18+)');
+                let restrictedItems = productDB.filter(p => p.category === 'Eighteen');
                 robberDemandedItem = restrictedItems[Math.floor(Math.random() * restrictedItems.length)];
                 
                 document.getElementById('customer-person').innerText = robberEmoji;
@@ -1643,7 +1643,7 @@
             if(item) {
                 item.binned = true;
                 
-                if(currentCustomerType === 'child' && item.category === 'Restricted (18+)') {
+                if(currentCustomerType === 'child' && item.category === 'Eighteen') {
                     document.getElementById('customer-mood').innerText = '😠';
                     customerPatience -= 20; 
                 }
@@ -1668,7 +1668,7 @@
             document.getElementById('screen-total').innerText = "$" + currentOrderTotal.toFixed(2);
             playBeep();
 
-            if(currentCustomerType === 'child' && item.category === 'Restricted (18+)') {
+            if(currentCustomerType === 'child' && item.category === 'Eighteen') {
                 hasSoldRestrictedToChild = true;
             }
 
