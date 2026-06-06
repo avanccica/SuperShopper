@@ -534,7 +534,7 @@
 
         function getSupplierCost(product) {
             let cost = product.retailPrice;
-            return isDeliveryDiscountItem(product.name) ? +(cost * 0.8).toFixed(2) : (2);
+            return isDeliveryDiscountItem(product.name) ? +(cost * 0.8).toFixed(2) : cost;
         }
 
         function updateTipJarDisplay() {
