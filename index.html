@@ -254,9 +254,9 @@
 
     <div id="side-menu">
         <span id="close-menu" onclick="toggleMenu()">×</span>
-        <button class="menu-btn" onclick="switchScreen('screen-register')">🛒 Cash Register</button>
-        <button class="menu-btn" onclick="switchScreen('screen-inventory')">📦 Back Inventory</button>
-        <button class="menu-btn" onclick="switchScreen('screen-order')">📋 Order Stock</button>
+		<button class="menu-btn" onclick="switchScreen('screen-order')">📋 Pep Mart</button>
+        <button class="menu-btn" onclick="switchScreen('screen-register')">🛒 Billing</button>
+        <button class="menu-btn" onclick="switchScreen('screen-inventory')">📦 My Inventory</button>
         <button class="menu-btn" onclick="saveProgress()">💾 Save Progress</button>
         <button class="menu-btn" onclick="loadProgress(true)">↩️ Load Save</button>
         <button class="menu-btn" onclick="clearSavedProgress()">🧹 Clear Save</button>
@@ -264,7 +264,7 @@
     </div>
 
     <div id="screen-register" class="screen active">
-        <h1>Cash Register</h1>
+        <h1>Billing</h1>
         
         <div id="customer-area">
             <div id="customer-person">🧑🏻</div>
@@ -306,13 +306,13 @@
     </div>
 
     <div id="screen-inventory" class="screen">
-        <h1>Back Inventory</h1>
+        <h1>My Inventory</h1>
         <p>Tap the tick on an item to choose whether it is available for sale.</p>
         <div id="inventory-grid" class="shelf-container metal-shelf"></div>
     </div>
 
     <div id="screen-order" class="screen">
-        <h1>Order Stock</h1>
+        <h1>Pep Mart</h1>
         <p>Click items to add them to your Cart. Deliveries take 10 seconds.</p>
         
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
@@ -533,8 +533,8 @@
         }
 
         function getSupplierCost(product) {
-            let baseCost = product.retailPrice - product.tip;
-            return isDeliveryDiscountItem(product.name) ? +(baseCost * 0.8).toFixed(2) : +baseCost.toFixed(2);
+            let cost = product.retailPrice;
+            return isDeliveryDiscountItem(product.name) ? +(cost * 0.8).toFixed(2) : (2);
         }
 
         function updateTipJarDisplay() {
@@ -1170,7 +1170,7 @@
                             <div class="product-card-emoji">${p.emoji}</div>
                             <div class="product-name">${p.name}</div>
                             ${isDeliveryDiscountItem(p.name)?`<div class="discount-burst">20%<br>OFF</div><small style="display:block;text-decoration:line-through;color:#999;">$${(p.retailPrice-p.tip).toFixed(2)}</small>`:''}
-                            <small style="color:#ff9aa2;font-weight:700;">$${getSupplierCost(p).toFixed(2)}</small>
+                            <small style="color:#ff9aa2;font-weight:700;">$${p.retailPrice.toFixed(2)}</small>
                         </div>`;
                     });
                 });
@@ -1839,7 +1839,7 @@
             let saleItems = inventory.filter(item => item.forSale !== false && item.qty > 0 && item.category !== 'Gift of Life');
 
             if (saleItems.length === 0) {
-                belt.innerHTML = '<div style="width:100%; text-align:center; color:#ff9aa2; font-size:18px; font-weight:700;">No items are marked for sale. Open Back Inventory and tap green ticks to stock the register.</div>';
+                belt.innerHTML = '<div style="width:100%; text-align:center; color:#ff9aa2; font-size:18px; font-weight:700;">No items are marked for sale. Open My Inventory and tap green ticks to stock the register.</div>';
                 document.getElementById('btn-scanner').classList.add('faded');
                 document.getElementById('customer-mood').innerText = '😭';
                 return;
