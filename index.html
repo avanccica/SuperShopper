@@ -1180,7 +1180,7 @@
                     <div class="catalog-item" onclick="addToCart(${p.originalIndex})">
                         <div class="product-card-emoji">${p.emoji}</div>
                         <div class="product-name">${p.name}</div>
-                        ${isDeliveryDiscountItem(p.name)?`<div class="discount-burst">20%<br>OFF</div><small style="display:block;text-decoration:line-through;color:#999;">$${(p.retailPrice.toFixed(2)}</small>`:''}
+                        ${isDeliveryDiscountItem(p.name)?`<div class="discount-burst">20%<br>OFF</div><small style="display:block;text-decoration:line-through;color:#999;">$${p.retailPrice.toFixed(2)}</small>`:''}
                         <small style="color:#ff9aa2;font-weight:700;">$${getSupplierCost(p).toFixed(2)}</small>
                     </div>`;
                 });
