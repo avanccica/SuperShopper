@@ -7,39 +7,45 @@
     <style>
         /* Pastel Minimalist Theme */
         * { box-sizing: border-box; }
-        html { min-height: 100%; overflow-x: hidden; scroll-padding-top: 90px; -webkit-overflow-scrolling: touch; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #fdfaf6; color: #4a4a4a; user-select: none; min-height: 100dvh; overflow-x: hidden; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
+        html { min-height: 100%; overflow-x: clip; scroll-padding-top: 90px; -webkit-overflow-scrolling: touch; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #fdfaf6; color: #4a4a4a; user-select: none; min-height: 100dvh; overflow-x: clip ; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
         
         /* Navbar */
-        #navbar { background: #b5ead7; color: #2c3e50; padding: calc(15px + env(safe-area-inset-top, 0px)) 30px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 15px rgba(0,0,0,0.05); width: 100%; max-width: 100vw; overflow: hidden; }
+        #navbar { background: #b5ead7; color: #2c3e50; padding: calc(15px + env(safe-area-inset-top, 0px)) 30px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: -1px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.08); width: 100%; max-width: 100vw; }
         #hamburger { font-size: 24px; cursor: pointer; background: none; border: none; color: #2c3e50; transition: 0.2s; }
         #hamburger:hover { transform: scale(1.1); }
         #nav-controls { display: flex; gap: 20px; align-items: center; }
         .nav-stat { font-size: 16px; font-weight: 700; background: rgba(255,255,255,0.6); padding: 8px 16px; border-radius: 12px; color: #2c3e50; }
         #cash-display { color: #2c3e50; }
         
-        /* Cart Button & Modal */
-        #btn-cart, .top-icon-btn { background: #ffdac1; color: #2c3e50; border: none; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 15px; transition: 0.2s; box-shadow: 0 4px 0 #e8c6af; }
-        #btn-cart:hover, .top-icon-btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 #e8c6af; }
+        /* Timer Display */
+        #timer-display { cursor: pointer; transition: background 0.3s, color 0.3s; }
+
+        /* Inline Cart Conveyor */
+        #inline-cart-container { background: #fff; border-radius: 16px; padding: 10px 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 3px solid #b5ead7; width: 100%; gap: 15px; overflow: hidden; }
+        #cart-conveyor { display: flex; align-items: center; gap: 12px; overflow-x: auto; white-space: nowrap; flex-grow: 1; scrollbar-width: none; touch-action: pan-x; padding: 15px 0; }
+        #cart-conveyor::-webkit-scrollbar { display: none; }
+        .conveyor-item { position: relative; font-size: 28px; display: inline-flex; align-items: center; cursor: pointer; transition: transform 0.2s; }
+        .conveyor-item:hover { transform: translateY(-2px); }
+        .conveyor-divider { color: #e2e2e2; margin: 0 2px; user-select: none; font-size: 18px; }
+        .conveyor-badge { position: absolute; top: -8px; right: -10px; background: #ff5a66; color: white; font-size: 15px; font-weight: 900; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid #fff; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+
+        #cart-checkout-section { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 20px; color: #2c3e50; flex-shrink: 0; padding-left: 15px; border-left: 3px dashed #fdfaf6; }
+        #btn-inline-checkout { background: #ffdac1; border: none; font-size: 26px; padding: 8px 14px; border-radius: 12px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 0 #e8c6af; }
+        #btn-inline-checkout:hover { transform: translateY(2px); box-shadow: 0 2px 0 #e8c6af; }
+
+        /* Buttons & Modal */
+        .top-icon-btn { background: #ffdac1; color: #2c3e50; border: none; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 15px; transition: 0.2s; box-shadow: 0 4px 0 #e8c6af; }
+        .top-icon-btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 #e8c6af; }
         #btn-preorders { background: #c7ceea; box-shadow: 0 4px 0 #b5bcd6; }
-        #cart-modal, .contract-modal { display: none; position: fixed; top: 75px; right: 30px; background: white; color: #4a4a4a; width: 360px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); z-index: 300; padding: 25px; border: 2px solid #ffdac1; max-height: 70vh; overflow-y: auto; }
+        .contract-modal { display: none; position: fixed; top: 75px; right: 30px; background: white; color: #4a4a4a; width: 360px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); z-index: 300; padding: 25px; border: 2px solid #ffdac1; max-height: 70vh; overflow-y: auto; }
         
-        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 2px dashed #fdfaf6; padding-bottom: 12px; font-size: 15px; }
-        .cart-controls { display: flex; align-items: center; gap: 8px; }
-        .qty-btn { background: #e2f0cb; border: none; border-radius: 6px; cursor: pointer; padding: 5px 12px; font-weight: bold; color: #2c3e50; }
-        .del-btn { background: #ff9aa2; color: white; border: none; border-radius: 6px; cursor: pointer; padding: 5px 10px; font-weight: bold; }
-        
-        #btn-buy { width: 100%; background: #b5ead7; color: #2c3e50; border: none; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 20px; border-radius: 12px; transition: 0.2s; box-shadow: 0 4px 0 #a2d5c4; }
-        
-        /* Timer & Gift */
-        #timer-display { color: #2c3e50; }
-        #btn-gift { display: none; background: #c7ceea; color: #2c3e50; border: none; padding: 8px 16px; border-radius: 12px; cursor: pointer; font-weight: 700; box-shadow: 0 4px 0 #b5bcd6; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        .contract-icon{display:inline-block;font-size:1.4em;}
+.contract-icon{display:inline-block;font-size:1.4em; pointer-events:none;}
         .contract-icon.attention{animation:pulse 1.5s infinite;}
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
         /* Side Menu */
-        #side-menu { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #fffaf0; border-right: 3px solid #ffdac1; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 200; padding-top: 80px; }
+        #side-menu { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #fffaf0; border-right: 3px solid #ffdac1; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1001; padding-top: 80px; }
         #side-menu.open { left: 0; box-shadow: 10px 0 30px rgba(0,0,0,0.05); }
         .menu-btn { display: block; width: 100%; padding: 18px 30px; color: #4a4a4a; text-decoration: none; font-size: 17px; font-weight: 600; border: none; background: none; text-align: left; cursor: pointer; border-bottom: 2px dashed #fdfaf6; transition: 0.2s; }
         .menu-btn:hover { background: #ffe5d9; padding-left: 35px; color: #2c3e50; }
@@ -128,7 +134,8 @@
 
         /* Manager Office */
         .catalog-grid { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 30px; }
-        .catalog-category-title { width: 100%; border-bottom: 3px dashed #ffdac1; margin-top: 25px; padding-bottom: 8px; color: #2c3e50; font-size: 22px; font-weight: 700; }
+        #sticky-cart-wrapper { position: -webkit-sticky; position: sticky; top: calc(60px + env(safe-area-inset-top, 0px)); background-color: #fdfaf6; z-index: 110; padding: 10px 0 5px; margin: 0; }
+        .catalog-category-title { width: 100%; border-bottom: 3px dashed #ffdac1; margin: 0; padding: 15px 0 8px; color: #2c3e50; font-size: 22px; font-weight: 700; position: -webkit-sticky; position: sticky; top: calc(195px + env(safe-area-inset-top, 0px)); background-color: #fdfaf6; z-index: 100; }    
         .catalog-item { position:relative; overflow:visible; background: #fff; padding: 20px 15px; border-radius: 16px; text-align: center; width: 110px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
         .catalog-item:hover { border-color: #aec4e6; transform: translateY(-4px); }
         .contract-modal { padding-top: 20px; }
@@ -155,19 +162,27 @@
         .custom-alert-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
         body.scanning-mode #belt { touch-action: pan-y; }
+        
+        /* Delivery Rain Animation */
+        @keyframes fallAndFade {
+            0% { transform: translateY(-100px) scale(0.5) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; transform: translateY(50px) scale(1.5) rotate(-10deg); }
+            80% { opacity: 1; transform: translateY(calc(70vh)) scale(1.2) rotate(10deg); }
+            100% { transform: translateY(calc(90vh)) scale(0.5) rotate(0deg); opacity: 0; }
+        }
+        .falling-emoji { position: fixed; top: 0; z-index: 9999; font-size: 55px; pointer-events: none; animation: fallAndFade 2.2s ease-in forwards; text-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
         @media (max-width: 760px) {
             html { scroll-padding-top: 132px; }
             #navbar { display: grid; grid-template-columns: auto 1fr; gap: 10px 12px; align-items: center; padding: calc(10px + env(safe-area-inset-top, 0px)) 12px 10px; }
             #hamburger { font-size: 18px; min-height: 42px; white-space: nowrap; }
             #navbar > div:nth-child(2) { font-size: 19px !important; text-align: right; min-width: 0; }
-            #nav-controls { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; min-width: 0; }
-            #btn-gift { grid-column: 1 / -1; width: 100%; }
-            #btn-cart { grid-column: 1 / -1; }
-            .nav-stat, #btn-cart, #btn-gift, .top-icon-btn { min-width: 0; max-width: 100%; width: 100%; padding: 9px 8px; font-size: 14px; text-align: center; white-space: normal; overflow-wrap: anywhere; line-height: 1.15; }
-            #cart-modal, .contract-modal { left: 12px; right: 12px; top: calc(118px + env(safe-area-inset-top, 0px)); width: auto; max-height: calc(100dvh - 145px); padding: 18px; }
-            .cart-item { align-items: flex-start; gap: 10px; }
-            .cart-controls { flex-shrink: 0; }
+            
+            #nav-controls { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; width: 100%; align-items: center; }
+            .nav-stat, .top-icon-btn { min-width: 0; flex: 1 1 0; padding: 9px 4px; font-size: 14px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; }
+            
+            .contract-modal { left: 0; right: 0; margin: 0 auto; width: 85%; top: calc(118px + env(safe-area-inset-top, 0px)); max-height: calc(100dvh - 145px); padding: 18px; }
+            
             #side-menu { width: min(82vw, 280px); left: min(-82vw, -280px); height: 100dvh; padding-top: calc(70px + env(safe-area-inset-top, 0px)); }
             .screen { padding: 20px 14px 34px; max-width: 100%; }
             h1 { font-size: 26px; padding-bottom: 12px; }
@@ -186,7 +201,8 @@
             .shelf-container, .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 12px; padding: 16px; width: 100%; }
             .shelf-container { grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); }
             .catalog-grid { padding: 0; }
-            .catalog-category-title { grid-column: 1 / -1; font-size: 19px; margin-top: 20px; }
+            #sticky-cart-wrapper { top: calc(110px + env(safe-area-inset-top, 0px)); }
+            .catalog-category-title { grid-column: 1 / -1; font-size: 19px; margin: 0; padding-top: 15px; top: calc(240px + env(safe-area-inset-top, 0px)); }
             .catalog-item { width: 100%; min-width: 0; padding: 14px 8px; }
             .product-card { width: 100%; min-width: 0; min-height: 94px; }
             .product-card-emoji { font-size: 30px; }
@@ -212,24 +228,12 @@
 
     <div id="navbar">
         <button id="hamburger" onclick="toggleMenu()">☰ Menu</button>
-        <div style="font-size: 28px; font-weight: 900; letter-spacing: 1px; color: #2c3e50; font-family: 'Trebuchet MS', 'Comic Sans MS', cursive; text-shadow: 2px 2px 0 #ffdac1; margin-left:12px;">🛒 Super Shopper</div>
+<div onclick="handleSecretTap()" style="font-size: 28px; font-weight: 900; letter-spacing: 1px; color: #2c3e50; font-family: 'Trebuchet MS', 'Comic Sans MS', cursive; text-shadow: 2px 2px 0 #ffdac1; margin-left:12px; cursor:pointer;">🛒 Super Shopper</div>
         <div id="nav-controls">
-            <button id="btn-gift" onclick="collectDelivery()">📦 Receive Stock</button>
             <button id="btn-preorders" class="top-icon-btn" onclick="toggleContractModal('preorder-modal')">🚚</button>
-            <div class="nav-stat" id="timer-display">00:00</div>
+            <div class="nav-stat" id="timer-display" onclick="collectDeliveryIfPending()">00:00</div>
             <div class="nav-stat" id="cash-display">$<span id="cash">100.00</span></div>
-            <button id="btn-cart" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
         </div>
-    </div>
-
-    <div id="cart-modal">
-        <h2 style="margin-top:0; border-bottom: 3px dashed #ffdac1; padding-bottom: 15px; font-size: 22px; color: #2c3e50;">Your Order</h2>
-        <div id="cart-items"></div>
-        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:18px; color: #2c3e50; margin-top: 20px;">
-            <span>Total:</span>
-            <span id="cart-total">$0.00</span>
-        </div>
-        <button id="btn-buy" onclick="buyCart()">Place Order</button>
     </div>
 
     <div id="preorder-modal" class="contract-modal">
@@ -247,7 +251,7 @@
         <div id="save-status" class="save-status"></div>
     </div>
 
-    <div id="screen-register" class="screen active">
+    <div id="screen-register" class="screen">
         <h1>Billing</h1>
         
         <div id="customer-area">
@@ -292,34 +296,92 @@
         <div id="inventory-grid" class="shelf-container metal-shelf"></div>
     </div>
 
-    <div id="screen-order" class="screen">
+    <div id="screen-order" class="screen active">
         <h1>Pep Mart</h1>
-        <p>Click items to add them to your Cart. Deliveries take 10 seconds.</p>
-        
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
-        <input id="catalog-search" type="text" placeholder="🔍 Search items"
-               oninput="renderCatalog()"
-               style="padding:10px;border-radius:10px;border:2px solid #ffdac1;min-width:220px;">
-        <select id="catalog-category-filter" onchange="renderCatalog()"
-                style="padding:10px;border-radius:10px;border:2px solid #ffdac1;">
-            <option value="All">All Categories</option>
-        </select>
-        <select id="catalog-sort-filter" onchange="renderCatalog()"
-                style="padding:10px;border-radius:10px;border:2px solid #ffdac1;">
-            <option value="default">Default Order</option>
-            <option value="low-high">Price Low → High</option>
-            <option value="high-low">Price High → Low</option>
-        </select>
-    </div>
-    <div id="catalog-grid" class="catalog-grid"></div>
-    
+        <p>Click items to add them to your Cart. Deliveries in 10 seconds, home deliveries in 7.</p>
+        <div id="sticky-cart-wrapper">
+            <div style="display:flex;gap:8px;flex-wrap:nowrap;margin-bottom:15px;width:100%;">
+                <input id="catalog-search" type="text" placeholder="🔍 Search" oninput="renderCatalog()"
+                       style="padding:10px;border-radius:10px;border:2px solid #ffdac1;flex:1;min-width:0;font-size:14px;">
+                <select id="catalog-category-filter" onchange="renderCatalog()"
+                        style="padding:10px;border-radius:10px;border:2px solid #ffdac1;flex:1;min-width:0;font-size:14px;">
+                    <option value="All">All Categories</option>
+                </select>
+                <select id="catalog-sort-filter" onchange="renderCatalog()"
+                        style="padding:10px;border-radius:10px;border:2px solid #ffdac1;flex:1;min-width:0;font-size:14px;">
+                    <option value="default">Price</option>
+                    <option value="low-high">Low → High</option>
+                    <option value="high-low">High → Low</option>
+                </select>
+            </div>
+
+            <div id="inline-cart-container" style="margin-bottom: 5px;">
+                <div id="cart-conveyor">
+                    <span style="color:#7f8c8d; font-size:16px; font-weight:700;">🛒 Cart is empty</span>
+                </div>
+                <div id="cart-checkout-section">
+                    <span id="inline-cart-total" style="color:#7f8c8d;">$0.00</span>
+                    <button id="btn-inline-checkout" onclick="buyCart()" style="opacity: 0.5; cursor: not-allowed; box-shadow: none; transform: none; background: #fdfaf6;">📦</button>
+                </div>
+            </div>
+        </div>
+        <div id="catalog-grid" class="catalog-grid"></div>
     </div>
 
     <script>
+        let touchStartY = 0;
+        let touchStartX = 0;
+
+        function handleTouchStart(event) {
+            touchStartY = event.changedTouches[0].screenY;
+            touchStartX = event.changedTouches[0].screenX;
+        }
+
+        function handleTouchEnd(event, index) {
+            let touchEndY = event.changedTouches[0].screenY;
+            let touchEndX = event.changedTouches[0].screenX;
+            let yDiff = touchEndY - touchStartY;
+            let xDiff = Math.abs(touchEndX - touchStartX);
+            
+            // Swipe Down Threshold
+            if (yDiff > 40 && yDiff > xDiff) {
+                removeCartItemEntirely(index);
+            }
+        }
+
+        function handleConveyorClick(event, index) {
+            if (event.ctrlKey || event.metaKey) {
+                removeCartItemEntirely(index);
+            }
+        }
+
+        function removeCartItemEntirely(index) {
+            cart.splice(index, 1);
+            playThwack();
+            updateCartCount();
+        }
+
+        // Auto-close modals when clicking outside or scrolling
+        window.addEventListener('click', (e) => {
+            const preorderModal = document.getElementById('preorder-modal');
+            if (preorderModal && preorderModal.style.display === 'block') {
+                if (!document.body.contains(e.target)) return;
+                if (!preorderModal.contains(e.target) && 
+                    !e.target.closest('#btn-preorders') && 
+                    !e.target.closest('.contract-tile')) {
+                    preorderModal.style.display = 'none';
+                }
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const preorderModal = document.getElementById('preorder-modal');
+            if (preorderModal) preorderModal.style.display = 'none';
+        }, { passive: true });
+
         // Custom Popups replacing alert, confirm, and prompt
         function customAlert(title, msg) {
-        		const textDiv = document.getElementById('custom-alert-text')
-                // If msg is missing, the first argument was the message
+                const textDiv = document.getElementById('custom-alert-text')
                 if (msg === undefined) {
                    textDiv.innerHTML = `<p>${title}</p>`;
                 } else {
@@ -358,6 +420,8 @@
         let isScanning = false;
         let deliveryTimer = 0;
         let timerInterval = null;
+        let isDeliveryPending = false;
+        let pendingTimerTimeout = null;
         
         let customerPatience = 100;
         let patienceInterval = null;
@@ -384,7 +448,7 @@
         const robberEmoji = '🥷';
 
         const productDB = [
-			{ emoji: '🍄', name: 'Amanita Muscaria', retailPrice: 10.00, tip: 3.5, category: 'Produce' },
+            { emoji: '🍄', name: 'Amanita Muscaria', retailPrice: 10.00, tip: 3.5, category: 'Produce' },
             { emoji: '🍎', name: 'Apple', retailPrice: 5.00, tip: 1.75, category: 'Produce' },
             { emoji: '🥑', name: 'Avocado', retailPrice: 8.50, tip: 2.975, category: 'Produce' },
             { emoji: '🍌', name: 'Banana', retailPrice: 8.00, tip: 2.8, category: 'Produce' },
@@ -398,7 +462,7 @@
             { emoji: '🫚', name: 'Ginger', retailPrice: 4.50, tip: 1.575, category: 'Produce' },
             { emoji: '🍏', name: 'Green Apple', retailPrice: 5.00, tip: 1.75, category: 'Produce' },
             { emoji: '🍇', name: 'Grapes', retailPrice: 8.00, tip: 2.8, category: 'Produce' },
-			{ emoji: '🌿', name: 'Hara Masala', retailPrice: 12.00, tip: 4.2, category: 'Produce' },
+            { emoji: '🌿', name: 'Hara Masala', retailPrice: 12.00, tip: 4.2, category: 'Produce' },
             { emoji: '🥝', name: 'Kiwi', retailPrice: 8.50, tip: 2.975, category: 'Produce' },
             { emoji: '🍋', name: 'Lemon', retailPrice: 5.50, tip: 1.925, category: 'Produce' },
             { emoji: '🥭', name: 'Mango', retailPrice: 8.50, tip: 2.975, category: 'Produce' },
@@ -432,36 +496,36 @@
             { emoji: '🫓', name: 'Flatbread', retailPrice: 24.00, tip: 8.4, category: 'Bakery & Dairy' },
             { emoji: '🥞', name: 'Pancakes', retailPrice: 32.00, tip: 11.2, category: 'Bakery & Dairy' },
             { emoji: '🥨', name: 'Pretzel', retailPrice: 27.00, tip: 9.45, category: 'Bakery & Dairy' },
-			{ emoji: '🍯', name: 'Aam Ka Achaar', retailPrice: 13.50, tip: 4.725, category: 'Sweets & Snacks' },
+            { emoji: '🍯', name: 'Aam Ka Achaar', retailPrice: 13.50, tip: 4.725, category: 'Sweets & Snacks' },
             { emoji: '🥓', name: 'Bacon', retailPrice: 15.50, tip: 5.425, category: 'Hot Meals & Seafood' },
             { emoji: '🍔', name: 'Burger', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
             { emoji: '🍗', name: 'Chicken', retailPrice: 18.50, tip: 6.475, category: 'Hot Meals & Seafood' },
-			{ emoji: '🍚', name: 'Chini Chol', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
+            { emoji: '🍚', name: 'Chini Chol', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
             { emoji: '🥠', name: 'Fortune Cookie', retailPrice: 15.50, tip: 5.425, category: 'Hot Meals & Seafood' },
             { emoji: '🍟', name: 'Fries', retailPrice: 26.50, tip: 9.275, category: 'Hot Meals & Seafood' },
             { emoji: '🌭', name: 'Hot Dog', retailPrice: 26.50, tip: 9.275, category: 'Hot Meals & Seafood' },
-			{ emoji: '🍛', name: 'Idli Sambar', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
-			{ emoji: '🦀', name: 'King Crab', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
-			{ emoji: '🍢', name: 'Kebab', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
+            { emoji: '🍛', name: 'Idli Sambar', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
+            { emoji: '🦀', name: 'King Crab', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
+            { emoji: '🍢', name: 'Kebab', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
             { emoji: '🦞', name: 'Lobster', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
-			{ emoji: '🍩', name: 'Mendu Vada', retailPrice: 27.00, tip: 9.45, category: 'Hot Meals & Seafood' },
-			{ emoji: '🍣', name: 'Nigiri', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
-			{ emoji: '🍙', name: 'Onigiri', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
+            { emoji: '🍩', name: 'Mendu Vada', retailPrice: 27.00, tip: 9.45, category: 'Hot Meals & Seafood' },
+            { emoji: '🍣', name: 'Nigiri', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
+            { emoji: '🍙', name: 'Onigiri', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
             { emoji: '🦪', name: 'Oyster', retailPrice: 21.50, tip: 7.525, category: 'Hot Meals & Seafood' },
             { emoji: '🍝', name: 'Pasta', retailPrice: 26.50, tip: 9.275, category: 'Hot Meals & Seafood' },
             { emoji: '🍕', name: 'Pizza', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
             { emoji: '🐟', name: 'Pomfret', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
             { emoji: '🦐', name: 'Prawn', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
-			{ emoji: '🧇', name: 'Pronthi', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
+            { emoji: '🧇', name: 'Pronthi', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
             { emoji: '🥪', name: 'Sandwich', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
             { emoji: '🐛', name: 'Sea Cucumber', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
             { emoji: '🍤', name: 'Shrimp', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
             { emoji: '🦑', name: 'Squid', retailPrice: 26.50, tip: 9.275, category: 'Hot Meals & Seafood' },
-			{ emoji: '🍘', name: 'Senbei', retailPrice: 15.50, tip: 5.425, category: 'Hot Meals & Seafood' },
+            { emoji: '🍘', name: 'Senbei', retailPrice: 15.50, tip: 5.425, category: 'Hot Meals & Seafood' },
             { emoji: '🍲', name: 'Stew', retailPrice: 27.00, tip: 9.45, category: 'Hot Meals & Seafood' },
             { emoji: '🌮', name: 'Taco', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
             { emoji: '🐠', name: 'Tiger Fish', retailPrice: 23.50, tip: 8.225, category: 'Hot Meals & Seafood' },
-			{ emoji: '🍜', name: 'Udon', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
+            { emoji: '🍜', name: 'Udon', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
             { emoji: '🌯', name: 'Burrito', retailPrice: 32.00, tip: 11.2, category: 'Hot Meals & Seafood' },
             { emoji: '🍦', name: 'Butterscotch Ice Cream', retailPrice: 24.00, tip: 8.4, category: 'Sweets & Snacks' },
             { emoji: '🍬', name: 'Candy', retailPrice: 15.50, tip: 5.425, category: 'Sweets & Snacks' },
@@ -469,26 +533,26 @@
             { emoji: '🍪', name: 'Cookie', retailPrice: 24.00, tip: 8.4, category: 'Sweets & Snacks' },
             { emoji: '🍮', name: 'Custard', retailPrice: 27.00, tip: 9.45, category: 'Sweets & Snacks' },
             { emoji: '🍡', name: 'Dango', retailPrice: 23.50, tip: 8.225, category: 'Sweets & Snacks' },
-			{ emoji: '🥟', name: 'Gujiya', retailPrice: 32.00, tip: 11.2, category: 'Sweets & Snacks' },
+            { emoji: '🥟', name: 'Gujiya', retailPrice: 32.00, tip: 11.2, category: 'Sweets & Snacks' },
             { emoji: '🍦', name: 'Ice Cream', retailPrice: 24.00, tip: 8.4, category: 'Sweets & Snacks' },
             { emoji: '🍨', name: 'Ice Cream Bowl', retailPrice: 21.50, tip: 7.525, category: 'Sweets & Snacks' },
-			{ emoji: '🥘', name: 'Ijjat Papad', retailPrice: 32.00, tip: 11.2, category: 'Sweets & Snacks' },
+            { emoji: '🥘', name: 'Ijjat Papad', retailPrice: 32.00, tip: 11.2, category: 'Sweets & Snacks' },
             { emoji: '🍭', name: 'Lollipop', retailPrice: 15.50, tip: 5.425, category: 'Sweets & Snacks' },
             { emoji: '🥮', name: 'Mooncake', retailPrice: 24.00, tip: 8.4, category: 'Sweets & Snacks' },
-			{ emoji: '🥜', name: 'Mufli', retailPrice: 15.50, tip: 5.425, category: 'Sweets & Snacks' },
+            { emoji: '🥜', name: 'Mufli', retailPrice: 15.50, tip: 5.425, category: 'Sweets & Snacks' },
             { emoji: '🍨', name: 'Neapolitan Ice Cream', retailPrice: 24.00, tip: 8.4, category: 'Sweets & Snacks' },
             { emoji: '🍿', name: 'Popcorn', retailPrice: 15.50, tip: 5.425, category: 'Sweets & Snacks' },
             { emoji: '🎂', name: 'Birthday Cake', retailPrice: 27.00, tip: 9.45, category: 'Sweets & Snacks' },
             { emoji: '🍧', name: 'Gola', retailPrice: 23.50, tip: 8.225, category: 'Sweets & Snacks' },
-			{ emoji: '🧋', name: 'Boba', retailPrice: 32.00, tip: 11.2, category: 'Beverages' },
-			{ emoji: '🍵', name: 'Bhaag Bakri', retailPrice: 23.5, tip: 8.225, category: 'Beverages' },
+            { emoji: '🧋', name: 'Boba', retailPrice: 32.00, tip: 11.2, category: 'Beverages' },
+            { emoji: '🍵', name: 'Bhaag Bakri', retailPrice: 23.5, tip: 8.225, category: 'Beverages' },
             { emoji: '🥥', name: 'Coconut Water', retailPrice: 23.50, tip: 8.225, category: 'Beverages' },
-			{ emoji: '☕', name: 'Complain', retailPrice: 23.50, tip: 8.225, category: 'Beverages' },
-			{ emoji: '💧', name: 'Dihydrogen Monoxide', retailPrice: 11.00, tip: 3.85, category: 'Beverages' },
-			{ emoji: '🥤', name: 'Donka Cola', retailPrice: 13.5, tip: 4.725, category: 'Beverages' },
+            { emoji: '☕', name: 'Complain', retailPrice: 23.50, tip: 8.225, category: 'Beverages' },
+            { emoji: '💧', name: 'Dihydrogen Monoxide', retailPrice: 11.00, tip: 3.85, category: 'Beverages' },
+            { emoji: '🥤', name: 'Donka Cola', retailPrice: 13.5, tip: 4.725, category: 'Beverages' },
             { emoji: '🧃', name: 'Happy Fish', retailPrice: 11.00, tip: 3.85, category: 'Beverages' },
             { emoji: '🥛', name: 'Milk', retailPrice: 14.00, tip: 4.9, category: 'Beverages' },
-			{ emoji: '🥫', name: 'Next Café', retailPrice: 15.50, tip: 5.425, category: 'Beverages' },
+            { emoji: '🥫', name: 'Next Café', retailPrice: 15.50, tip: 5.425, category: 'Beverages' },
             { emoji: '🍺', name: 'Beer', retailPrice: 5.00, tip: 1.75, category: 'Eighteen' },
             { emoji: '🍻', name: 'Septemberfest', retailPrice: 10.00, tip: 3.5, category: 'Eighteen' },
             { emoji: '🌬️', name: 'Tambaku', retailPrice: 10.00, tip: 3.5, category: 'Eighteen' },
@@ -502,7 +566,7 @@
         ];
 
         function isDeliveryDiscountItem(productName) {
-            if (deliveryData.state === 'PACKING') return false;
+            if (!deliveryData || !Array.isArray(deliveryData.gifts) || deliveryData.state === 'PACKING') return false;
             return deliveryData.gifts.some(item => item.name === productName);
         }
 
@@ -521,7 +585,37 @@
             btn.textContent = valueText;
             if (amount) amount.innerText = valueText;
         }
-
+        let secretTapCount = 0;
+        let secretTapTimer = null;
+        function handleSecretTap() {
+            secretTapCount++;
+            clearTimeout(secretTapTimer);
+            
+            if (secretTapCount >= 3) {
+                secretTapCount = 0; // Reset counter
+                
+                // Spawn the magical truck!
+                if (!Array.isArray(deliveryData.gifts) || deliveryData.gifts.length === 0) {
+                    deliveryData.gifts = []; 
+                    let pool = productDB.filter(p => p.category !== 'Gift of Life');
+                    for (let i = 0; i < 5; i++) {
+                        let item = pool[Math.floor(Math.random() * pool.length)];
+                        deliveryData.gifts.push({ name: item.name, emoji: item.emoji, revealed: false, collected: false });
+                    }
+                }
+                deliveryData.state = 'WAITING';
+                deliveryData.nextDeliveryAt = Date.now();
+                deliveryData.boxes = [null, null, null, null, null];
+                tickContracts(); 
+                
+                // Little pop-up so you know it worked!
+                playPop();
+            } else {
+                // If they don't tap again within half a second, reset the counter
+                secretTapTimer = setTimeout(() => { secretTapCount = 0; }, 500);
+            }
+        }
+        
         function init() {
             renderCatalog();
             setupTouchScanner();
@@ -544,7 +638,26 @@
             
             // Cheat codes
             document.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && e.key === 'c') { robberReformed = true; robberGiftType = 'bread'; robberReturnTurn = turnCounter; generateCustomerBelt(); }
+                // CEO Cheat
+                if (e.ctrlKey && e.key === 'c') { 
+                    robberReformed = true; robberGiftType = 'bread'; robberReturnTurn = turnCounter; generateCustomerBelt(); 
+                }
+                
+// Supercharged Instant Delivery Cheat (Works ANYTIME)
+                if (e.ctrlKey && e.key === 'x') { 
+                    if (!Array.isArray(deliveryData.gifts) || deliveryData.gifts.length === 0) {
+                        deliveryData.gifts = []; // Safely forces it to be an array
+                        let pool = productDB.filter(p => p.category !== 'Gift of Life');
+                        for (let i = 0; i < 5; i++) {
+                            let item = pool[Math.floor(Math.random() * pool.length)];
+                            deliveryData.gifts.push({ name: item.name, emoji: item.emoji, revealed: false, collected: false });
+                        }
+                    }
+                    deliveryData.state = 'WAITING';
+                    deliveryData.nextDeliveryAt = Date.now();
+                    deliveryData.boxes = [null, null, null, null, null];
+                    tickContracts(); 
+                }
             });
         }
 
@@ -599,7 +712,8 @@
                 policeTurnsLeft = Number(saveData.policeTurnsLeft ?? 0);
                 
                 deliveryData = saveData.deliveryData || { state: 'PACKING', gifts: [], nextDeliveryAt: 0, boxes: [null, null, null, null, null] };
-                if (!deliveryData.boxes || deliveryData.boxes.length !== 5) {
+                if (!Array.isArray(deliveryData.gifts)) deliveryData.gifts = [];
+                if (!Array.isArray(deliveryData.boxes) || deliveryData.boxes.length !== 5) {
                     deliveryData.boxes = [null, null, null, null, null];
                 }
                 
@@ -634,18 +748,26 @@
                 document.getElementById('cash').innerText = cash.toFixed(2);
                 document.getElementById('tip-amount').innerText = "$" + tipTotal.toFixed(2); updateTipJarDisplay();
                 updateCartCount();
-                renderCartModal();
                 renderShelves();
-                switchScreen('screen-register');
+                switchScreen('screen-order');
                 stopShift();
 
                 if (deliveryTimer > 0) {
                     startDeliveryTimer(deliveryTimer);
                 } else if (deliveryBox.length > 0) {
-                    document.getElementById('btn-gift').style.display = 'inline-block';
+                    isDeliveryPending = true;
+                    const timerEl = document.getElementById('timer-display');
+                    timerEl.innerText = `READY!`;
+                    timerEl.style.background = '#2ecc71';
+                    timerEl.style.color = 'white';
+                    pendingTimerTimeout = setTimeout(() => {
+                        if(isDeliveryPending) collectDeliveryIfPending();
+                    }, 7000);
                 } else {
-                    document.getElementById('timer-display').innerText = '00:00';
-                    document.getElementById('btn-gift').style.display = 'none';
+                    const timerEl = document.getElementById('timer-display');
+                    timerEl.innerText = '00:00';
+                    timerEl.style.background = 'rgba(255,255,255,0.6)';
+                    timerEl.style.color = '#2c3e50';
                 }
 
                 updateSaveStatus(showMessage ? 'Save loaded.' : getSaveSummary(saveData.savedAt));
@@ -721,10 +843,6 @@
         }
 
         function toggleContractModal(id) {
-            ['cart-modal', 'preorder-modal'].forEach(modalId => {
-                const modal = document.getElementById(modalId);
-                if (modalId !== id) modal.style.display = 'none';
-            });
             const modal = document.getElementById(id);
             modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
             renderContracts();
@@ -737,9 +855,36 @@
                 `<span class="contract-icon ${deliveryData.state === 'UNPACKING' ? 'attention' : ''}">🚚</span>`;
         }
 
-        function renderPreOrder() {
+function renderPreOrder() {
             const content = document.getElementById('preorder-content');
             if (!content) return;
+
+            if (window.packingBoxIndex !== undefined && window.packingBoxIndex !== null) {
+                let eligible = window.deliveryEligible;
+                let boxIndex = window.packingBoxIndex;
+                let headerHtml = `<div class="contract-header"><h2>Pack Box ${boxIndex + 1}</h2></div>`;
+                
+                let gridHtml = `<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; margin-bottom: 15px; max-height: 40vh; overflow-y: auto; padding: 5px;">`;
+                if(!eligible.length){ gridHtml+='<p>No suitable items in inventory.</p>'; }
+                eligible.forEach((i,n)=>{
+                    let qty = window.deliveryBasketSelection[n] || 0;
+                    gridHtml+=`<div class="contract-tile ${qty>0?'selected':''}" style="cursor:pointer; border-color:${qty>0?'#2ecc71':'#fdfaf6'}; background:${qty>0?'#f1fff9':'white'}" onclick="incrementDeliveryItem(${n})">
+                    ${qty>0 ? `<div class="contract-qty" style="background:#2ecc71;" onclick="event.stopPropagation();decrementDeliveryItem(${n})">${qty}</div>` : ''}
+                    <div class="contract-emoji">${i.emoji}</div>
+                    <div class="contract-name">${i.name}</div>
+                    <div style="font-size:10px; color:#999; margin-top:2px; font-weight:bold;">(${qty}/${i.qty})</div>
+                    </div>`;
+                });
+                gridHtml += `</div>`;
+                
+                let actionHtml = `<div class="contract-actions">
+                    <button class="contract-action delivery-reward" onclick="submitDeliveryBasket()">Confirm</button>
+                    <button class="contract-action" style="background:#ff9aa2; color:white;" onclick="cancelDeliveryBasket()">Cancel</button>
+                </div>`;
+                
+                content.innerHTML = `${headerHtml}<div class="contract-card">${gridHtml}${actionHtml}</div>`;
+                return; 
+            }
 
             let headerHtml = `<div class="contract-header"><h2>Daily Delivery</h2><div class="contract-timer">`;
             let totalValue = 0;
@@ -762,7 +907,7 @@
                     let box = deliveryData.boxes[i];
                     if (box) {
                         itemsHtml += `<div class="contract-tile" onclick="openDeliveryBasket(${i})" style="cursor:pointer; position:relative;">
-                            <div class="contract-qty" onclick="decrementBoxItem(event, ${i})">${box.qty}</div>
+                            <div class="contract-qty" onclick="event.stopPropagation(); decrementBoxItem(event, ${i})">${box.qty}</div>
                             <div class="contract-emoji">${box.emoji}</div>
                             <div class="contract-name">${box.name}</div>
                         </div>`;
@@ -779,21 +924,9 @@
                     </div>`;
                 }
             } else if (deliveryData.state === 'UNPACKING') {
-                deliveryData.gifts.forEach((g, i) => {
-                    if (g.collected) {
-                        itemsHtml += `<div class="contract-tile">
-                            <div class="contract-emoji" style="color:#b5ead7; font-size:32px; font-weight:bold;">+</div>
-                        </div>`;
-                    } else if (!g.revealed) {
-                        itemsHtml += `<div class="contract-tile" onclick="revealGift(${i})" style="cursor:pointer;">
-                            <div class="contract-emoji" style="font-size:26px;">🎁</div>
-                        </div>`;
-                    } else {
-                        itemsHtml += `<div class="contract-tile" onclick="collectGift(${i})" style="cursor:pointer;">
-                            <div class="contract-emoji">${g.emoji}</div>
-                        </div>`;
-                    }
-                });
+                itemsHtml = `<div class="contract-tile" onclick="openAllGifts()" style="cursor:pointer; grid-column: 1 / -1; min-height: 80px; border: 3px dashed #b5ead7; background: #f1fff9;">
+                    <div class="contract-emoji" style="font-size:45px; animation: pulse 1s infinite;">🎁</div>
+                </div>`;
             }
 
             let actionHtml = '';
@@ -809,20 +942,16 @@
             event.stopPropagation();
             let box = deliveryData.boxes[boxIndex];
             if (!box || box.qty <= 0) return;
-            
             box.qty--;
             addInventoryByName(box.name, 1);
-            
-            if (box.qty <= 0) {
-                deliveryData.boxes[boxIndex] = null;
-            }
+            if (box.qty <= 0) deliveryData.boxes[boxIndex] = null;
             playThwack();
             renderPreOrder();
             renderShelves();
         }
 
         function openDeliveryBasket(boxIndex) {
-            window.currentDeliveryBox = boxIndex;
+            window.packingBoxIndex = boxIndex;
             let currentBox = deliveryData.boxes[boxIndex];
             let preselectedItemName = null;
             let preselectedQty = 0;
@@ -830,7 +959,6 @@
             if (currentBox) {
                 preselectedItemName = currentBox.name;
                 preselectedQty = currentBox.qty;
-                // Temporarily return to inventory for modal calculations
                 addInventoryByName(currentBox.name, currentBox.qty);
                 window.deliveryOriginalBox = { ...currentBox };
                 deliveryData.boxes[boxIndex] = null;
@@ -844,79 +972,37 @@
             
             if (preselectedItemName) {
                 let idx = eligible.findIndex(i => i.name === preselectedItemName);
-                if (idx !== -1) {
-                    window.deliveryBasketSelection[idx] = preselectedQty;
-                }
+                if (idx !== -1) window.deliveryBasketSelection[idx] = preselectedQty;
             }
-
-            const modal = document.getElementById('delivery-basket-modal');
-            let html = `<h3>Pack Delivery Box ${boxIndex + 1}</h3>
-            <style>
-            .rb-grid{display:flex;gap:10px;margin:10px 0;overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px;}
-            .rb-item{position:relative;width:90px;border:2px solid #ddd;border-radius:12px;padding:8px;text-align:center;cursor:pointer;background:#fff;}
-            .rb-item.selected{border:3px solid #b5ead7;background:#f1fff9;}
-            .rb-badge{position:absolute;top:-8px;right:-8px;background:#2ecc71;color:#fff;border-radius:999px;min-width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;}
-            .rb-emoji{font-size:26px;}
-            .rb-name{font-size:10px;min-height:24px;}
-            .rb-qty{font-size:11px;font-weight:700;}
-            </style><div class="rb-grid">`;
-
-            if(!eligible.length){html+='<p>No suitable items in inventory.</p>';}
-            eligible.forEach((i,n)=>{
-                let qty = window.deliveryBasketSelection[n] || 0;
-                html+=`<div class="rb-item ${qty>0?'selected':''}" id="db-item-${n}" onclick="incrementDeliveryItem(${n})">
-                <div class="rb-badge" onclick="event.stopPropagation();decrementDeliveryItem(${n})" id="db-badge-${n}">${qty}</div>
-                <div class="rb-emoji">${i.emoji}</div>
-                <div class="rb-name">${i.name}</div>
-                <div class="rb-qty" id="db-qty-${n}">(${qty}/${i.qty})</div>
-                </div>`;
-            });
-            html+=`</div><br><button class="custom-alert-btn" onclick="submitDeliveryBasket()">OK</button> <button class="custom-alert-btn danger" onclick="cancelDeliveryBasket()">Cancel</button>`;
-            modal.innerHTML = html;
-            modal.style.display = 'block';
+            renderPreOrder();
         }
 
         function incrementDeliveryItem(idx){
             const item = window.deliveryEligible[idx];
-            
-            // Enforce single item type per box
             let existingSelectionIdx = Object.keys(window.deliveryBasketSelection).find(k => window.deliveryBasketSelection[k] > 0);
             if (existingSelectionIdx && existingSelectionIdx !== String(idx)) {
                 window.deliveryBasketSelection[existingSelectionIdx] = 0;
-                updateDeliveryTile(existingSelectionIdx);
             }
-            
             const current = window.deliveryBasketSelection[idx] || 0;
-            if (current >= 100) {
-                customAlert("Max 100 per box.");
-                return;
-            }
+            if (current >= 100) return customAlert("Max 100 per box.");
             window.deliveryBasketSelection[idx] = Math.min(current+1, item.qty);
-            updateDeliveryTile(idx);
+            renderPreOrder();
         }
 
         function decrementDeliveryItem(idx){
             const current = window.deliveryBasketSelection[idx] || 0;
             window.deliveryBasketSelection[idx] = Math.max(0, current-1);
-            updateDeliveryTile(idx);
+            renderPreOrder();
         }
 
-        function updateDeliveryTile(idx){
-            const item = window.deliveryEligible[idx];
-            const qty = window.deliveryBasketSelection[idx] || 0;
-            document.getElementById('db-badge-'+idx).textContent = qty;
-            document.getElementById('db-qty-'+idx).textContent = `(${qty}/${item.qty})`;
-            document.getElementById('db-item-'+idx).classList.toggle('selected', qty > 0);
-        }
-        
         function cancelDeliveryBasket() {
             if (window.deliveryOriginalBox) {
                 removeInventoryQty(window.deliveryOriginalBox.name, window.deliveryOriginalBox.qty);
-                deliveryData.boxes[window.currentDeliveryBox] = window.deliveryOriginalBox;
+                deliveryData.boxes[window.packingBoxIndex] = window.deliveryOriginalBox;
             }
             window.deliveryBasketSelection = {};
             window.deliveryOriginalBox = null;
-            document.getElementById('delivery-basket-modal').style.display = 'none';
+            window.packingBoxIndex = null;
             renderPreOrder();
             renderShelves();
         }
@@ -935,10 +1021,10 @@
             });
 
             if(selectedCount === 0) {
-                deliveryData.boxes[window.currentDeliveryBox] = null;
+                deliveryData.boxes[window.packingBoxIndex] = null;
             } else {
                 removeInventoryQty(pickedItem.name, pickedQty);
-                deliveryData.boxes[window.currentDeliveryBox] = {
+                deliveryData.boxes[window.packingBoxIndex] = {
                     name: pickedItem.name,
                     emoji: pickedItem.emoji,
                     qty: pickedQty,
@@ -948,7 +1034,7 @@
 
             window.deliveryBasketSelection = {};
             window.deliveryOriginalBox = null;
-            document.getElementById('delivery-basket-modal').style.display = 'none';
+            window.packingBoxIndex = null;
             renderPreOrder();
             renderShelves();
         }
@@ -961,15 +1047,15 @@
             }
 
             let totalValue = deliveryData.boxes.reduce((s, b) => s + (b.retailPrice * b.qty), 0);
+            let allowedItems = productDB.filter(p => p.category !== 'Gift of Life');
 
-            // Determine tiers
             let tierPool;
             if(totalValue >= 127.51) {
-                tierPool = productDB.filter(p => p.retailPrice >= 127.51);
+                tierPool = allowedItems.filter(p => p.retailPrice >= 20);
+                if (tierPool.length === 0) tierPool = allowedItems; 
             } else {
-                tierPool = productDB.filter(p => p.retailPrice <= 127.50 && p.category !== 'Gift of Life'); 
+                tierPool = allowedItems.filter(p => p.retailPrice <= 127.50); 
             }
-            if (tierPool.length === 0) tierPool = productDB;
 
             deliveryData.gifts = [];
             for(let i=0; i<5; i++) {
@@ -992,29 +1078,41 @@
             renderShelves();
             renderCatalog();
         }
+        function openAllGifts() {
+            if (deliveryData.state !== 'UNPACKING') return;
 
-        function revealGift(i) {
-            if(deliveryData.gifts[i].collected) return;
-            deliveryData.gifts[i].revealed = true;
-            playPop();
-            renderPreOrder();
-        }
+            let emojis = deliveryData.gifts.map(g => g.emoji);
+            
+            deliveryData.gifts.forEach(g => {
+                addInventoryByName(g.name, 1);
+            });
 
-        function collectGift(i) {
-            if(!deliveryData.gifts[i].revealed || deliveryData.gifts[i].collected) return;
-            deliveryData.gifts[i].collected = true;
-            addInventoryByName(deliveryData.gifts[i].name, 1);
-            playCoinDrop();
-            
-            if (deliveryData.gifts.every(g => g.collected)) {
-                deliveryData.state = 'PACKING';
-                deliveryData.gifts = [];
-                window.deliveryBasketSelection = {};
-            }
-            
+            playDeliveryChime();
+            createFallingEmojis(emojis);
+
+            deliveryData.state = 'PACKING';
+            deliveryData.gifts = [];
+            deliveryData.boxes = [null, null, null, null, null];
+            window.deliveryBasketSelection = {};
+
             renderPreOrder();
             renderShelves();
             renderCatalog();
+        }
+
+        function createFallingEmojis(emojis) {
+            emojis.forEach((emoji, i) => {
+                let el = document.createElement('div');
+                el.innerText = emoji;
+                el.className = 'falling-emoji';
+                el.style.left = (15 + (i * 17.5)) + 'vw';
+                el.style.animationDelay = (i * 0.15) + 's'; 
+                document.body.appendChild(el);
+
+                setTimeout(() => {
+                    if (el.parentNode) el.parentNode.removeChild(el);
+                }, 2500);
+            });
         }
 
         function addInventoryByName(name, qty) {
@@ -1192,63 +1290,70 @@
             else cart.push({ ...item, qty: 1 });
             playPop(); 
             updateCartCount();
-            renderCartModal();
         }
 
         function updateCartQty(index, delta) {
             cart[index].qty += delta;
-            if(cart[index].qty <= 0) cart.splice(index, 1);
-            playTick();
+            if(cart[index].qty <= 0) {
+                cart.splice(index, 1);
+                playThwack();
+            } else {
+                playTick();
+            }
             updateCartCount();
-            renderCartModal();
-        }
-
-        function removeCartItem(index) {
-            cart.splice(index, 1);
-            playTick();
-            updateCartCount();
-            renderCartModal();
         }
 
         function updateCartCount() {
-            let totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            document.getElementById('cart-count').innerText = totalItems;
-        }
-
-        function toggleCart() {
-            document.getElementById('preorder-modal').style.display = 'none';
-            const modal = document.getElementById('cart-modal');
-            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-            playTick();
-        }
-
-        function renderCartModal() {
-            const itemsDiv = document.getElementById('cart-items');
-            let total = 0;
-            itemsDiv.innerHTML = cart.map((item, i) => {
-                let lineCost = getSupplierCost(item) * item.qty;
-                total += lineCost;
-                return `
-                <div class="cart-item">
-                    <span style="font-weight: 600;">${item.emoji} ${item.name} <span style="color:#7f8c8d">($${lineCost.toFixed(2)})</span></span>
-                    <div class="cart-controls">
-                        <button class="qty-btn" onclick="updateCartQty(${i}, -1)">-</button>
-                        <span style="font-weight:700; width: 20px; text-align:center;">${item.qty}</span>
-                        <button class="qty-btn" onclick="updateCartQty(${i}, 1)">+</button>
-                        <button class="del-btn" onclick="removeCartItem(${i})">×</button>
-                    </div>
-                </div>`;
-            }).join('');
-            document.getElementById('cart-total').innerText = "$" + total.toFixed(2);
+            const conveyor = document.getElementById('cart-conveyor');
+            const totalEl = document.getElementById('inline-cart-total');
+            const btnCheckout = document.getElementById('btn-inline-checkout');
+            
+            let totalCost = cart.reduce((sum, item) => sum + (getSupplierCost(item) * item.qty), 0);
+            
+            if (cart.length === 0) {
+                conveyor.innerHTML = '<span style="color:#7f8c8d; font-size:16px; font-weight:700;">🛒 Cart is empty</span>';
+                totalEl.innerText = "$0.00";
+                totalEl.style.color = '#7f8c8d';
+                btnCheckout.style.opacity = '0.5';
+                btnCheckout.style.cursor = 'not-allowed';
+                btnCheckout.style.background = '#fdfaf6';
+                btnCheckout.style.boxShadow = 'none';
+                btnCheckout.style.transform = 'none';
+            } else {
+                let html = '';
+                cart.forEach((item, i) => {
+                    html += `
+                    <div class="conveyor-item" 
+                         onclick="handleConveyorClick(event, ${i})"
+                         ontouchstart="handleTouchStart(event)"
+                         ontouchend="handleTouchEnd(event, ${i})"
+                         title="Ctrl+Click to remove entirely">
+                        <div class="conveyor-badge" onclick="event.stopPropagation(); updateCartQty(${i}, -1)">${item.qty}</div>
+                        ${item.emoji}
+                    </div>`;
+                    if (i < cart.length - 1) {
+                        html += `<div class="conveyor-divider">|</div>`;
+                    }
+                });
+                conveyor.innerHTML = html;
+                totalEl.innerText = "$" + totalCost.toFixed(2);
+                totalEl.style.color = '#2c3e50';
+                btnCheckout.style.opacity = '1';
+                btnCheckout.style.cursor = 'pointer';
+                btnCheckout.style.background = '#ffdac1';
+                btnCheckout.style.boxShadow = '0 4px 0 #e8c6af';
+            }
         }
 
         function buyCart() {
             let totalCost = cart.reduce((sum, item) => sum + (getSupplierCost(item) * item.qty), 0);
             if (cart.length === 0) return customAlert("Cart is empty!");
+            
             if (cash >= totalCost) {
-                if(deliveryTimer > 0) return customAlert("A delivery is already on the way!");
+                if(deliveryTimer > 0 || isDeliveryPending) return customAlert("A delivery is already on the way or pending!");
                 cash -= totalCost;
                 document.getElementById('cash').innerText = cash.toFixed(2);
+                
                 cart.forEach(item => {
                     for(let i=0; i<item.qty; i++) {
                         deliveryBox.push({ emoji: item.emoji, name: item.name, retailPrice: item.retailPrice, tip: item.tip, category: item.category });
@@ -1256,8 +1361,6 @@
                 });
                 cart = [];
                 updateCartCount();
-                renderCartModal();
-                toggleCart();
                 playCoinDrop();
                 startDeliveryTimer(10); 
             } else {
@@ -1268,32 +1371,54 @@
         // --- TIMER LOGIC ---
         function startDeliveryTimer(seconds) {
             deliveryTimer = seconds;
-            document.getElementById('btn-gift').style.display = 'none';
+            isDeliveryPending = false;
+            
+            const timerEl = document.getElementById('timer-display');
+            timerEl.style.background = '#ffdac1'; // Orange (Delivery on way)
+            timerEl.style.color = '#2c3e50';
+            
             timerInterval = setInterval(() => {
                 deliveryTimer--;
                 let mins = Math.floor(deliveryTimer / 60).toString().padStart(2, '0');
                 let secs = (deliveryTimer % 60).toString().padStart(2, '0');
-                document.getElementById('timer-display').innerText = `${mins}:${secs}`;
+                timerEl.innerText = `${mins}:${secs}`;
+                
                 if (deliveryTimer <= 0) {
                     clearInterval(timerInterval);
-                    document.getElementById('timer-display').innerText = `00:00`;
-                    document.getElementById('btn-gift').style.display = 'inline-block';
+                    timerEl.innerText = `READY!`;
+                    timerEl.style.background = '#2ecc71'; // Light Green (Pending collection)
+                    timerEl.style.color = 'white';
+                    isDeliveryPending = true;
                     playDeliveryChime(); 
+                    
+                    // Auto-collects after 7 seconds if not manually clicked
+                    pendingTimerTimeout = setTimeout(() => {
+                        if (isDeliveryPending) collectDeliveryIfPending();
+                    }, 7000);
                 }
             }, 1000);
         }
 
-        function collectDelivery() {
+        function collectDeliveryIfPending() {
+            if (!isDeliveryPending) return;
+            isDeliveryPending = false;
+            clearTimeout(pendingTimerTimeout);
+            
             deliveryBox.forEach(item => {
                 let existing = inventory.find(i => i.name === item.name);
                 if (existing) existing.qty++;
                 else inventory.push({ ...item, qty: 1, forSale: true });
             });
             deliveryBox = [];
-            document.getElementById('btn-gift').style.display = 'none';
+            
+            const timerEl = document.getElementById('timer-display');
+            timerEl.innerText = `00:00`;
+            timerEl.style.background = 'rgba(255,255,255,0.6)'; // Neutral Blue state
+            timerEl.style.color = '#2c3e50';
+            
             playPop();
             renderShelves();
-            if(isShiftStarted && document.getElementById('belt').innerHTML.includes('No items')) {
+            if (isShiftStarted && document.getElementById('belt').innerHTML.includes('No items')) {
                 generateCustomerBelt();
             }
         }
@@ -1957,6 +2082,5 @@
         init();
     </script>
     <div id="robber-basket-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:20px;border-radius:16px;z-index:999;max-width:420px;width:90%;border:3px solid #ffdac1;box-shadow:0 10px 40px rgba(0,0,0,.2)"></div>
-    <div id="delivery-basket-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:20px;border-radius:16px;z-index:999;max-width:420px;width:90%;border:3px solid #ffdac1;box-shadow:0 10px 40px rgba(0,0,0,.2)"></div>
 </body>
 </html>
