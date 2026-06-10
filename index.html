@@ -134,8 +134,8 @@
 
         /* Manager Office */
         .catalog-grid { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 30px; }
-#sticky-cart-wrapper { position: -webkit-sticky; position: sticky; top: calc(65px + env(safe-area-inset-top, 0px)); background-color: #fdfaf6; z-index: 110; padding: 15px 0 5px; margin: 0; box-shadow: 0 -20px 0 0 #fdfaf6; }
-        .catalog-category-title { width: 100%; border-bottom: 3px dashed #ffdac1; margin: 0; padding: 15px 0 8px; color: #2c3e50; font-size: 22px; font-weight: 700; position: -webkit-sticky; position: sticky; top: calc(220px + env(safe-area-inset-top, 0px)); background-color: #fdfaf6; z-index: 100; box-shadow: 0 -15px 0 0 #fdfaf6; }
+        #sticky-cart-wrapper { position: -webkit-sticky; position: sticky; top: calc(65px + env(safe-area-inset-top, 0px)); background-color: #fdfaf6; z-index: 110; padding: 15px 0 5px; margin: 0; box-shadow: 0 -40px 0 0 #fdfaf6; }
+        .catalog-category-title { width: 100%; border-bottom: 3px dashed #ffdac1; margin: 0; padding: 15px 0 8px; color: #2c3e50; font-size: 22px; font-weight: 700; position: -webkit-sticky; position: sticky; top: calc(220px + env(safe-area-inset-top, 0px)); background-color: #fdfaf6; z-index: 100; box-shadow: 0 -30px 0 0 #fdfaf6; }
         .catalog-item { position:relative; overflow:visible; background: #fff; padding: 20px 15px; border-radius: 16px; text-align: center; width: 110px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
         .catalog-item:hover { border-color: #aec4e6; transform: translateY(-4px); }
         .contract-modal { padding-top: 20px; }
@@ -201,8 +201,8 @@
             .shelf-container, .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 12px; padding: 16px; width: 100%; }
             .shelf-container { grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); }
             .catalog-grid { padding: 0; }
-            #sticky-cart-wrapper { top: calc(105px + env(safe-area-inset-top, 0px)); padding-top: 15px; box-shadow: 0 -20px 0 0 #fdfaf6; }
-           .catalog-category-title { grid-column: 1 / -1; font-size: 19px; margin: 0; padding-top: 15px; top: calc(255px + env(safe-area-inset-top, 0px)); box-shadow: 0 -15px 0 0 #fdfaf6; }
+            #sticky-cart-wrapper { top: calc(105px + env(safe-area-inset-top, 0px)); padding-top: 15px; box-shadow: 0 -40px 0 0 #fdfaf6; }
+           .catalog-category-title { grid-column: 1 / -1; font-size: 19px; margin: 0; padding-top: 15px; top: calc(255px + env(safe-area-inset-top, 0px)); box-shadow: 0 -30px 0 0 #fdfaf6; }
             .catalog-item { width: 100%; min-width: 0; padding: 14px 8px; }
             .product-card { width: 100%; min-width: 0; min-height: 94px; }
             .product-card-emoji { font-size: 30px; }
@@ -271,7 +271,7 @@
             <button id="btn-scanner" class="icon-btn" onclick="toggleScanner()" style="display:none;">🔫 Scan Items</button>
             <button id="btn-bin" class="icon-btn" onclick="binSelectedItem()" style="display:none;">🗑️ Bin Item</button>
             
-            <button id="btn-pay-fine" class="event-btn" onclick="handlePolice('pay')">Pay $50 Fine</button>
+            <button id="btn-pay-fine" class="event-btn" onclick="handlePolice('pay')">Pay $500 Fine</button>
             <button id="btn-police-basket" class="event-btn" onclick="openPoliceBasket()">🧺 Basket</button>
             
             <button id="btn-robber-tips" class="event-btn" onclick="handleRobber('tips')">Give Tip Jar</button>
@@ -298,7 +298,7 @@
 
     <div id="screen-order" class="screen active">
         <h1>Pep Mart</h1>
-        <p>Click items to add them to your Cart. Deliveries in 10 seconds, home deliveries in 7.</p>
+        <p style="text-align: center; margin-bottom: 10px; position: relative; z-index: 120;">Pick up in 10 seconds, home delivery in 7!</p>
         <div id="sticky-cart-wrapper">
             <div style="display:flex;gap:8px;flex-wrap:nowrap;margin-bottom:15px;width:100%;">
                 <input id="catalog-search" type="text" placeholder="🔍 Search" oninput="renderCatalog()"
@@ -317,7 +317,7 @@
 
             <div id="inline-cart-container" style="margin-bottom: 5px;">
                 <div id="cart-conveyor">
-                    <span style="color:#7f8c8d; font-size:16px; font-weight:700;">🛒 Cart is empty</span>
+                    <span style="color:#7f8c8d; font-size:16px; font-weight:700;">🛒 Select items to fill your cart!</span>
                 </div>
                 <div id="cart-checkout-section">
                     <span id="inline-cart-total" style="color:#7f8c8d;">$0.00</span>
@@ -448,7 +448,6 @@
         const robberEmoji = '🥷';
 
         const productDB = [
-            { emoji: '🍄', name: 'Amanita Muscaria', retailPrice: 10.00, tip: 3.5, category: 'Produce' },
             { emoji: '🍎', name: 'Apple', retailPrice: 5.00, tip: 1.75, category: 'Produce' },
             { emoji: '🥑', name: 'Avocado', retailPrice: 8.50, tip: 2.975, category: 'Produce' },
             { emoji: '🍌', name: 'Banana', retailPrice: 8.00, tip: 2.8, category: 'Produce' },
@@ -553,14 +552,15 @@
             { emoji: '🧃', name: 'Happy Fish', retailPrice: 11.00, tip: 3.85, category: 'Beverages' },
             { emoji: '🥛', name: 'Milk', retailPrice: 14.00, tip: 4.9, category: 'Beverages' },
             { emoji: '🥫', name: 'Next Café', retailPrice: 15.50, tip: 5.425, category: 'Beverages' },
-            { emoji: '🍺', name: 'Beer', retailPrice: 5.00, tip: 1.75, category: 'Eighteen' },
-            { emoji: '🍻', name: 'Septemberfest', retailPrice: 10.00, tip: 3.5, category: 'Eighteen' },
-            { emoji: '🌬️', name: 'Tambaku', retailPrice: 10.00, tip: 3.5, category: 'Eighteen' },
-            { emoji: '🍹', name: 'Santra', retailPrice: 30.00, tip: 10.5, category: 'Eighteen' },
-            { emoji: '🍸', name: 'Martini', retailPrice: 40.00, tip: 14.0, category: 'Eighteen' },
-            { emoji: '🍶', name: 'Sake', retailPrice: 100.00, tip: 35.0, category: 'Eighteen' },
-            { emoji: '🥃', name: 'Whiskey', retailPrice: 25.00, tip: 8.75, category: 'Eighteen' },
-            { emoji: '🍷', name: 'Domaine de la Romanee-Conti Romanee-Conti Grand Cru', retailPrice: 250.00, tip: 87.5, category: 'Eighteen' },
+            { emoji: '🍄', name: 'Amanita Muscaria', retailPrice: 333.00, tip: 116.55, category: 'Eighteen' },
+            { emoji: '🍺', name: 'Beer', retailPrice: 455.00, tip: 159.25, category: 'Eighteen' },
+            { emoji: '🍻', name: 'Septemberfest', retailPrice: 513.00, tip: 179.55, category: 'Eighteen' },
+            { emoji: '🌬️', name: 'Tambaku', retailPrice: 500.00, tip: 175.00, category: 'Eighteen' },
+            { emoji: '🍹', name: 'Santra', retailPrice: 730.00, tip: 255.5, category: 'Eighteen' },
+            { emoji: '🍸', name: 'Martini', retailPrice: 800.00, tip: 280.0, category: 'Eighteen' },
+            { emoji: '🍶', name: 'Sake', retailPrice: 474.00, tip: 165.9, category: 'Eighteen' },
+            { emoji: '🥃', name: 'Whiskey', retailPrice: 525.00, tip: 183.75, category: 'Eighteen' },
+            { emoji: '🍷', name: 'Domaine de la Romanee-Conti Romanee-Conti Grand Cru', retailPrice: 780.00, tip: 273.0, category: 'Eighteen' },
             { emoji: '🍾', name: 'Champagne', retailPrice: 19.71, tip: 9.71, category: 'Gift of Life' },
             { emoji: '👓', name: 'Spectacles', retailPrice: 19.21, tip: 9.21, category: 'Gift of Life' }
         ];
@@ -1050,11 +1050,11 @@ function renderPreOrder() {
             let allowedItems = productDB.filter(p => p.category !== 'Gift of Life');
 
             let tierPool;
-            if(totalValue >= 127.51) {
-                tierPool = allowedItems.filter(p => p.retailPrice >= 20);
+            if(totalValue >= 402.51) {
+                tierPool = allowedItems.filter(p => p.retailPrice >= 402.51);
                 if (tierPool.length === 0) tierPool = allowedItems; 
             } else {
-                tierPool = allowedItems.filter(p => p.retailPrice <= 127.50); 
+                tierPool = allowedItems.filter(p => p.retailPrice <= 402.50); 
             }
 
             deliveryData.gifts = [];
@@ -1153,6 +1153,7 @@ function renderPreOrder() {
                     customAlert("You can't close the register on the police! They'll be back immediately.");
                     policeTurnsLeft = 0; 
                 }
+                returnBeltItemsToInventory(); //
                 stopShift();
             } else {
                 startShift();
@@ -1311,7 +1312,7 @@ function renderPreOrder() {
             let totalCost = cart.reduce((sum, item) => sum + (getSupplierCost(item) * item.qty), 0);
             
             if (cart.length === 0) {
-                conveyor.innerHTML = '<span style="color:#7f8c8d; font-size:16px; font-weight:700;">🛒 Cart is empty</span>';
+                conveyor.innerHTML = '<span style="color:#7f8c8d; font-size:16px; font-weight:700;">🛒 Select items to fill your cart!</span>';
                 totalEl.innerText = "$0.00";
                 totalEl.style.color = '#7f8c8d';
                 btnCheckout.style.opacity = '0.5';
@@ -1347,7 +1348,7 @@ function renderPreOrder() {
 
         function buyCart() {
             let totalCost = cart.reduce((sum, item) => sum + (getSupplierCost(item) * item.qty), 0);
-            if (cart.length === 0) return customAlert("Cart is empty!");
+            if (cart.length === 0) return customAlert("Select items to fill your cart!");
             
             if (cash >= totalCost) {
                 if(deliveryTimer > 0 || isDeliveryPending) return customAlert("A delivery is already on the way or pending!");
@@ -1479,7 +1480,7 @@ function renderPreOrder() {
         // --- EVENTS: POLICE & ROBBER ---
         function handlePolice(action) {
             if (action === 'pay') {
-                cash -= 50;
+                cash -= 500;
                 document.getElementById('cash').innerText = cash.toFixed(2);
                 policePending = false;
                 playCoinDrop();
@@ -1538,7 +1539,7 @@ function renderPreOrder() {
 
         function declinePoliceBasket() {
             document.getElementById('robber-basket-modal').style.display='none';
-            cash -= 50;
+            cash -= 500;
             document.getElementById('cash').innerText = cash.toFixed(2);
             addInventoryByName('Lemon', 5);
             addInventoryByName('Milk', 5);
@@ -1774,8 +1775,9 @@ function renderPreOrder() {
             document.getElementById('patience-bar').style.width = '100%';
             document.getElementById('patience-bar').style.backgroundColor = '#b5ead7';
             
-            // Turn Logic
+// Turn Logic
             if (policeTurnsLeft > 0) policeTurnsLeft--;
+            let previousCustomer = currentCustomerType;
             
             if (policePending && policeTurnsLeft <= 0) {
                 currentCustomerType = 'police';
@@ -1783,7 +1785,7 @@ function renderPreOrder() {
                 currentCustomerType = 'ceo';
             } else {
                 let rand = Math.random();
-                if (rand < 0.20) currentCustomerType = 'robber';
+                if (rand < 0.10 && previousCustomer !== 'robber') currentCustomerType = 'robber';
                 else if (rand < 0.40) currentCustomerType = 'child';
                 else currentCustomerType = 'adult';
             }
@@ -1804,7 +1806,7 @@ function renderPreOrder() {
             if (currentCustomerType === 'police') {
                 document.getElementById('customer-person').innerText = policeEmoji;
                 document.getElementById('customer-mood').innerText = '🤬';
-                belt.innerHTML = '<div style="width:100%; text-align:center; color:#e74c3c; font-size:22px; font-weight:800;">"You sold restricted items to a minor! Pay $50 fine OR give me 10 Donuts!"</div>';
+                belt.innerHTML = '<div style="width:100%; text-align:center; color:#e74c3c; font-size:22px; font-weight:800;">"You sold restricted items to a minor! Pay $500 fine OR give me 10 Donuts!"</div>';
                 
                 document.getElementById('btn-scanner').style.display = 'none';
                 document.getElementById('screen-total').style.display = 'none';
@@ -1966,10 +1968,12 @@ function renderPreOrder() {
             let item = itemsBoughtThisTurn.find(i => i.id === selectedBeltItem);
             if(item) {
                 item.binned = true;
+                addInventoryByName(item.name, 1);
                 playThwack();
                 selectedBeltItem = null;
                 document.getElementById('btn-bin').style.display = 'none';
                 renderBeltItems();
+                renderShelves();
             }
         }
 
